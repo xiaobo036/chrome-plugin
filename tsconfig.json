@@ -1,7 +1,18 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"], // 包含 DOM 和 ES 新特性
+    "types": ["chrome", "vite/client"], // 引入 chrome 和 Vite 类型
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true, // 开启严格类型检查
+    "paths": {
+      "@/*": ["./src/*"] // 别名配置，方便导入
+    }
+  },
+  "include": ["src"]
 }
