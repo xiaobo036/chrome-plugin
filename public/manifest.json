@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "谷歌浏览器截图小工具",
+  "version": "1.0.0",
+  "description": "一个简单易用的谷歌浏览器截图插件，帮助用户快速捕捉网页内容并保存为图片文件。",
+  "permissions": ["activeTab", "desktopCapture", "downloads"],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/screen-shot-16.png",
+      "24": "icons/screen-shot-24.png",
+      "48": "icons/screen-shot-48.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/screen-shot-16.png",
+    "24": "icons/screen-shot-24.png",
+    "48": "icons/screen-shot-48.png"
+  },
+  "commands": {
+    "take-screenshot": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Take a screenshot of the current tab"
+    }
+  }
+}
