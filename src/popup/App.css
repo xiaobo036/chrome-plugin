@@ -1,11 +1,11 @@
 html,
 body {
-  min-width: 410px;
+  min-width: 310px;
   min-height: 30px;
   background-color: #f9f9f9;
   cursor: pointer;
   position: relative;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 #root {
@@ -15,4 +15,25 @@ body {
 }
 
 .toolbar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  gap: 8px;
+}
+
+.toolbar-item {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.toolbar-item-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.toolbar-item:hover {
+  background: #e0e0e0;
+  padding: 3px;
 }
