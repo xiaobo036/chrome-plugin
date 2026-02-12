@@ -1,0 +1,11 @@
+.toolbar-list {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  .toolbar-item{
+    cursor: pointer;
+  }
+}

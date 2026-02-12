@@ -1,1 +1,1 @@
-{"root":["./src/background.ts","./src/contentscript.ts","./src/index.tsx","./src/background/index.ts","./src/options/option.tsx","./src/options/index.tsx","./src/popup/app.tsx","./src/popup/popup.tsx","./src/popup/index.tsx","./src/types/index.ts"],"version":"5.9.3"}
+{"root":["./src/background.ts","./src/contentscript.ts","./src/index.tsx","./src/app/app.tsx","./src/app/index.tsx","./src/popup/popup.tsx","./src/background/index.ts","./src/types/index.ts"],"version":"5.9.3"}
