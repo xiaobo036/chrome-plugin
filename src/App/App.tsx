@@ -69,42 +69,41 @@ const getComputedStyle = (rowId: ToolbarItem["id"]): React.CSSProperties => {
     objectFit: "contain",
   };
 };
-
-const handleToolBarItemClick =(name:ToolbarItem['name'])=>{
-  if(name === "矩形"){
+const handleToolBarItemClick = (name: ToolbarItem["name"]) => {
+  if (name === "矩形") {
     chrome.runtime.sendMessage({
       type: "rectangle",
     });
-  }else if(name === "椭圆"){
+  } else if (name === "椭圆") {
     chrome.runtime.sendMessage({
       type: "circle",
     });
-  }else if(name === "箭头"){
+  } else if (name === "箭头") {
     chrome.runtime.sendMessage({
       type: "arrow",
     });
-  }else if(name === "画笔"){
+  } else if (name === "画笔") {
     chrome.runtime.sendMessage({
       type: "pen",
     });
-  }else if(name === "马赛克"){
+  } else if (name === "马赛克") {
     chrome.runtime.sendMessage({
       type: "mosaic",
     });
-  }else if(name === "文本"){
+  } else if (name === "文本") {
     chrome.runtime.sendMessage({
       type: "text",
     });
-  }else if(name === "退出"){
+  } else if (name === "退出") {
     chrome.runtime.sendMessage({
       type: "exit",
     });
-  }else if(name === "复制"){
+  } else if (name === "复制") {
     chrome.runtime.sendMessage({
       type: "copy",
     });
   }
-}
+};
 
 const GenerateToolbarList: React.FC = () => {
   return (
@@ -115,7 +114,7 @@ const GenerateToolbarList: React.FC = () => {
             key={row.id}
             className="toolbar-item"
             title={row.name}
-            onClick={handleToolBarItemClick(row.name)}
+            onClick={() => handleToolBarItemClick(row.name)}
           >
             <img
               style={{

@@ -4,16 +4,28 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
   build: {
     outDir: 'dist',
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
-        background: path.resolve(__dirname, 'src/background/index.ts')
+        background: path.resolve(__dirname, 'src/background/index.ts'),
+        contentScript: path.resolve(__dirname, 'src/contentScript.ts')
       },
       output: {
         entryFileNames: (chunkInfo) => {
-          return chunkInfo.name === 'background' ? 'background.js' : 'assets/[name].[hash].js';
+          if (chunkInfo.name === 'background') {
+            return 'background.js';
+          } else if (chunkInfo.name === 'contentScript') {
+            return 'contentScript.js';
+          } else {
+            return 'assets/[name].[hash].js';
+          }
         }
       }
     },
