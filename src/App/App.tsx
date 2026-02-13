@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import "./App.scss";
-
+import { MessageType } from "@/types";
 interface ToolbarItem {
   id: number;
   name: string;
@@ -70,39 +70,57 @@ const getComputedStyle = (rowId: ToolbarItem["id"]): React.CSSProperties => {
   };
 };
 const handleToolBarItemClick = (name: ToolbarItem["name"]) => {
-  if (name === "矩形") {
-    chrome.runtime.sendMessage({
-      type: "rectangle",
-    });
-  } else if (name === "椭圆") {
-    chrome.runtime.sendMessage({
-      type: "circle",
-    });
-  } else if (name === "箭头") {
-    chrome.runtime.sendMessage({
-      type: "arrow",
-    });
-  } else if (name === "画笔") {
-    chrome.runtime.sendMessage({
-      type: "pen",
-    });
-  } else if (name === "马赛克") {
-    chrome.runtime.sendMessage({
-      type: "mosaic",
-    });
-  } else if (name === "文本") {
-    chrome.runtime.sendMessage({
-      type: "text",
-    });
-  } else if (name === "退出") {
-    chrome.runtime.sendMessage({
-      type: "exit",
-    });
-  } else if (name === "复制") {
-    chrome.runtime.sendMessage({
-      type: "copy",
-    });
+  console.log(`点击了工具栏: ${name}`);
+
+  let messageType: MessageType;
+
+  switch (name) {
+    case "矩形":
+      messageType = "rectangle";
+      break;
+    case "椭圆":
+      messageType = "circle";
+      break;
+    case "箭头":
+      messageType = "arrow";
+      break;
+    case "画笔":
+      messageType = "pen";
+      break;
+    case "马赛克":
+      messageType = "mosaic";
+      break;
+    case "文本":
+      messageType = "text";
+      break;
+    case "退出":
+      messageType = "exit";
+      break;
+    case "复制":
+      messageType = "copy";
+      break;
+    default:
+      console.warn(`未知的工具栏项: ${name}`);
+      return;
   }
+
+  sendMessageToBackGround(messageType);
+};
+
+/**
+ * 发送消息到 Background Script 并处理响应
+ * @param messageType
+ */
+const sendMessageToBackGround = (messageType: MessageType) => {
+  chrome.runtime.sendMessage({ type: messageType }, (response) => {
+    if (chrome.runtime.lastError) {
+      console.error("消息传递失败:", chrome.runtime.lastError);
+      // 这里可以添加用户反馈，例如显示错误提示
+    } else {
+      console.log("消息传递成功:", response);
+      // 这里可以添加用户反馈，例如显示成功提示
+    }
+  });
 };
 
 const GenerateToolbarList: React.FC = () => {
